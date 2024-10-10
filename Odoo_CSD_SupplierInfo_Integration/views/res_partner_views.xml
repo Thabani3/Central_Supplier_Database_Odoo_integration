@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <record id="view_res_partner_form_inherit" model="ir.ui.view">
+        <field name="name">res.partner.form.inherit.csd</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="base.view_partner_form"/>
+        <field name="arch" type="xml">
+            <!-- Adding MAAA No. field and Get Supplier Details button after VAT field -->
+            <field name="vat" position="after">
+                <field name="maaa_no" nolabel="0" string="MAAA No."/>
+                <button name="action_get_supplier_details" string="Get Details" type="object" class="oe_highlight" invisible="not maaa_no"/>
+            </field>
+
+            <!-- Adding additional pages after the 'internal_notes' page -->
+            <page name="internal_notes" position="after">
+                <!-- Auth page -->
+                <page name="auth" string="Auth" invisible="1">
+                    <group>
+                        <group string="Supplier Profile">
+                            <group>
+                                <field name="business_name"/>
+                                <field name="mob"/>
+                            </group>
+                            <group>
+                                <field name="portal_email"/>
+                                <field name="portal_reg_no"/>
+                            </group>
+                        </group>
+                    </group>
+                </page>
+
+                <!-- CSD Information page -->
+                <page name="csd_info" string="CSD">
+                    <group>
+                        <group string="Identification Details">
+                            <group>
+                                <field name="supplier_number"/>
+                                <field name="supplier_type_name"/>
+                                <field name="supplier_sub_classification"/>
+                                <field name="supplier_sub_type_name"/>
+                                <field name="government_type_name"/>
+                                <field name="id_type_name"/>
+                                <field name="country_of_origin_name"/>
+                                <field name="business_status_name"/>
+                                <field name="industry_classification_name"/>
+                                <field name="legal_name"/>
+                                <field name="trading_name"/>
+                                <field name="sa_company_number"/>
+                                <field name="registration_date"/>
+                            </group>
+                        </group>
+                        <group string="Contact Details">
+                            <group>
+                                <field name="contact_name"/>
+                                <field name="contact_surname"/>
+                                <field name="contact_email"/>
+                                <field name="contact_cell_no"/>
+                                <field name="contact_sa_id_no"/>
+                            </group>
+                        </group>
+                        <group string="Banking Details">
+                            <group>
+                                <field name="bank_account_holder_name"/>
+                                <field name="bank_account_type"/>
+                                <field name="bank_name"/>
+                                <field name="bank_branch_name"/>
+                                <field name="bank_branch_number"/>
+                                <field name="bank_account_number"/>
+                            </group>
+                        </group>
+                        <group string="Tax Details">
+                            <group>
+                                <field name="income_tax_number"/>
+                                <field name="vat_number"/>
+                                <field name="paye_number"/>
+                                <field name="tax_clearance_certificate_expiry_date"/>
+                                <field name="tax_status"/>
+                            </group>
+                        </group>
+                        <group string="Directors">
+                            <group>
+                                <field name="director_name"/>
+                                <field name="director_surname"/>
+                                <field name="director_sa_id_no"/>
+                                <field name="director_appointment_date"/>
+                                <field name="director_status"/>
+                                <field name="director_type"/>
+                                <field name="director_ownership_percent"/>
+                            </group>
+                        </group>
+                    </group>
+                </page>
+
+                <!-- Supplier Portal Address page -->
+                <page name="supplier_portal_add" string="Address Details">
+                    <group>
+                        <group string="Physical Address">
+                            <field name="municipality"/>
+                            <field name="addr_line1"/>
+                            <field name="addr_line2"/>
+                            <field name="suburb"/>
+                        </group>
+                        <group string="Preferred Supplier Contact">
+                            <field name="preferred_contact_name"/>
+                            <field name="preferred_contact_email"/>
+                            <field name="preferred_contact_phtype"/>
+                            <field name="preferred_contact_cell"/>
+                        </group>
+                        <group string="Payable / Supplier Info">
+                            <field name="supp_name"/>
+                            <field name="supp_surname"/>
+                            <field name="supp_cellno"/>
+                            <field name="supp_email"/>
+                        </group>
+                        <group string="BBBEE Info">
+                            <field name="bbbee_no_rating"/>
+                            <field name="bbbee_start_date"/>
+                            <field name="bbbee_exp_date"/>
+                            <field name="bbbee_days_to_exp"/>
+                        </group>
+                    </group>
+                    <group>
+                        <group string="Public Beneficiary">
+                            <field name="is_public_beneficiary"/>
+                        </group>
+                    </group>
+                </page>
+
+                <!-- Supplier Documents page -->
+                <page name="supplier_docs" string="Documents">
+                    <group>
+                        <group>
+                            <field name="location_evidence" widget="many2many_binary"/>
+                            <field name="contact_evidence" widget="many2many_binary"/>
+                            <field name="coida_evidence" widget="many2many_binary"/>
+                            <field name="bbbee_certificate" widget="many2many_binary"/>
+                        </group>
+                    </group>
+                </page>
+
+                <!-- Supplier Terms page (invisible) -->
+                <page name="supplier_terms" string="Terms" invisible="1">
+                    <group>
+                    </group>
+                </page>
+            </page>
+        </field>
+    </record>
+</odoo>
